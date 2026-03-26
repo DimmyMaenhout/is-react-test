@@ -29,10 +29,6 @@ export default function PostCommentsPage() {
     navigate(-1);
   }
 
-  if (!cachedPost) {
-    return <p>Coulnd't find the post.</p>;
-  }
-
   if (isPending) {
     return <p>Fetching post comments...</p>;
   }
@@ -40,10 +36,14 @@ export default function PostCommentsPage() {
   if (error) {
     return (
       <p>
-        Something went wrong while fething the post comments, please try again
+        Something went wrong while fetching the post comments, please try again
         later.
       </p>
     );
+  }
+
+  if (!cachedPost) {
+    return <p>Couldn't find the post.</p>;
   }
 
   if (!comments?.length) {
@@ -51,18 +51,22 @@ export default function PostCommentsPage() {
   }
 
   return (
-    <div>
+    <main>
       <button onClick={onCloseClick}>Close</button>
 
-      <h1>{cachedPost.title}</h1>
-      <p>{cachedPost.body}</p>
+      <article>
+        <h1>{cachedPost.title}</h1>
+        <p>{cachedPost.body}</p>
+      </article>
 
-      <h2>Comments</h2>
-      <ul>
-        {comments.map((comment) => {
-          return <li key={comment.id}>{comment.body}</li>;
-        })}
-      </ul>
-    </div>
+      <section>
+        <h2>Comments</h2>
+        <ul>
+          {comments.map((comment) => {
+            return <li key={comment.id}>{comment.body}</li>;
+          })}
+        </ul>
+      </section>
+    </main>
   );
 }
