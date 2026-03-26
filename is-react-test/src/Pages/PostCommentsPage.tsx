@@ -1,9 +1,11 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import { fetchPostComments } from "../API/posts/posts";
+import type { PostsResponse } from "../Models/PostsResponse";
 
 export default function PostCommentsPage() {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const { id } = useParams<{ id: string }>();
 
   if (!id) {
@@ -20,8 +22,15 @@ export default function PostCommentsPage() {
     enabled: !!id,
   });
 
+  const cachedPosts = queryClient.getQueryData<PostsResponse>(["posts"]);
+  const cachedPost = cachedPosts?.find((post) => String(post.id) === id);
+
   function onCloseClick() {
     navigate(-1);
+  }
+
+  if (!cachedPost) {
+    return <p>Coulnd't find the post.</p>;
   }
 
   if (isPending) {
@@ -44,6 +53,9 @@ export default function PostCommentsPage() {
   return (
     <div>
       <button onClick={onCloseClick}>Close</button>
+
+      <h1>{cachedPost.title}</h1>
+      <p>{cachedPost.body}</p>
 
       <h2>Comments</h2>
       <ul>
