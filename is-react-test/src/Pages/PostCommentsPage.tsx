@@ -1,8 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { fetchPostComments } from "../API/posts/posts";
 
 export default function PostCommentsPage() {
+  const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
 
   if (!id) {
@@ -19,7 +20,9 @@ export default function PostCommentsPage() {
     enabled: !!id,
   });
 
-  function onCloseClick() {}
+  function onCloseClick() {
+    navigate(-1);
+  }
 
   if (isPending) {
     return <p>Fetching post comments...</p>;
