@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import type { Post } from "../Models/Post";
 
+import styles from "./PostItem.module.css";
+
 type PostItemProps = Pick<Post, "title" | "id">;
 
 export default function PostItem({ title, id }: PostItemProps) {
@@ -12,8 +14,10 @@ export default function PostItem({ title, id }: PostItemProps) {
 
   return (
     <li>
-      <p>{title}</p>
-      <button onClick={handleButtonClick}>View</button>
+      <div className={styles.postItem}>
+        <p>{title}</p>
+        <button onClick={handleButtonClick}>View</button>
+      </div>
     </li>
   );
 }
