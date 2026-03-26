@@ -22,8 +22,8 @@ export default function HomePage() {
     );
   }
 
-  if (!data) {
-    return;
+  if (!data?.length) {
+    return <p>No posts found.</p>;
   }
 
   return (
