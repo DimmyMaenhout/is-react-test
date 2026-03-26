@@ -44,6 +44,9 @@ export default function HomePage() {
           placeholder="search post titles"
           value={search}
         />
+        {search.trim() !== "" && (
+          <button onClick={() => setSearch("")}>X</button>
+        )}
       </div>
       <PostList posts={filteredData} />
     </main>
