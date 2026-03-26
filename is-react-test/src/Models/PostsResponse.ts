@@ -1,3 +1,3 @@
-import { Post } from "./Post";
+import type { Post } from "./Post";
 
 export type PostsResponse = Post[];
