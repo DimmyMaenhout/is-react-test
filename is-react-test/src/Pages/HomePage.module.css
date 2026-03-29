@@ -1,0 +1,18 @@
+.wrapper {
+    width: 150px;
+    max-width: 100%;
+    position: relative;
+}
+
+.wrapper input {
+   width: 100%;
+}
+
+.wrapper button {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    border: none;
+    background-color: transparent;
+    transform: translateY(-50%);
+}

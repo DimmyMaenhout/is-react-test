@@ -3,6 +3,8 @@ import { fetchPosts } from "../API/posts/posts";
 import PostList from "../Components/PostList";
 import { useState, type ChangeEvent } from "react";
 
+import style from "./HomePage.module.css";
+
 export default function HomePage() {
   const [search, setSearch] = useState<string>("");
 
@@ -37,7 +39,7 @@ export default function HomePage() {
 
   return (
     <main>
-      <div>
+      <div className={style.wrapper}>
         <input
           type="text"
           onChange={handleSearchInput}
