@@ -50,6 +50,7 @@ export default function HomePage() {
           <button onClick={() => setSearch("")}>X</button>
         )}
       </div>
+
       <PostList posts={filteredData} />
     </main>
   );
